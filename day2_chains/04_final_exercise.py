@@ -5,20 +5,23 @@ Day 2 综合练习：构建翻译 Chain
 示例场景：用户输入中文Query，自动翻译成英文执行SQL
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
 
-LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
-    "base_url": "https://api.minimaxi.com/v1"
-}
+llm = ChatOpenAI(
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
+    base_url="https://api.minimaxi.com/v1"
+)
 
 def create_translation_chain():
     """构建翻译 Chain：中文 → 英文"""
-    llm = ChatOpenAI(**LLM_CONFIG)
-    
     return (
         PromptTemplate.from_template(
             """你是一个SQL专家。请把下面的自然语言查询转换成SQL。
@@ -39,8 +42,7 @@ SQL："""
 
 def create_nl2sql_chain():
     """构建完整的 NL2SQL Chain"""
-    llm = ChatOpenAI(**LLM_CONFIG)
-    
+
     # 翻译 Chain
     translate_prompt = PromptTemplate.from_template(
         "把以下中文翻译成英文：{query}"

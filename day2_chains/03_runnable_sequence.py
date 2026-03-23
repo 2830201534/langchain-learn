@@ -3,14 +3,19 @@ Day 2 练习 3：RunnableSequence 详解
 深入理解 LCEL 的 RunnableSequence 机制
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import RunnableSequence
 
 llm = ChatOpenAI(
-    model="MiniMax",
-    api_key="你的API Key",
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
     base_url="https://api.minimaxi.com/v1"
 )
 

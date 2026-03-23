@@ -2,14 +2,19 @@
 Day 2 练习 1：LCEL 基础管道
 使用 | 管道操作符串接 Prompt → LLM → OutputParser
 """
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
 
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
 
+# 初始化 LLM（MiniMax 兼容接口）
 llm = ChatOpenAI(
-    model="MiniMax",
-    api_key="你的API Key",
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
     base_url="https://api.minimaxi.com/v1"
 )
 

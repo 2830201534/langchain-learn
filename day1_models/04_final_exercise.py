@@ -8,7 +8,7 @@ from pathlib import Path
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
-from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from comm.get_pass import get_pass
@@ -29,7 +29,8 @@ def create_ai_assistant(api_key: str, base_url: str = "https://api.minimaxi.com/
         system_msg = system_template.invoke({"role": role, "topic": topic})
         response = llm.invoke([
             SystemMessage(content=system_msg.text),
-            HumanMessage(content=user_input)
+            HumanMessage(content=user_input),
+            AIMessage(content="你一般说话只说10句话")
         ])
         return response.content
     
