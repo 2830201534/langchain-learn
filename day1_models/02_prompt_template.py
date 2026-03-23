@@ -3,13 +3,19 @@ Day 1 练习 2：PromptTemplate 动态拼装
 学会用 PromptTemplate 注入变量
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate
-from langchain.schema import HumanMessage
+from langchain_core.prompts import PromptTemplate
+from langchain_core.messages import HumanMessage
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
 
 llm = ChatOpenAI(
-    model="MiniMax",
-    api_key="你的MiniMax API Key",
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
     base_url="https://api.minimaxi.com/v1"
 )
 

@@ -3,14 +3,20 @@ Day 1 综合练习：构建一个简单的 AI 助手
 验收标准：能用 MiniMax API + PromptTemplate 动态变量 + 多消息构建完整对话
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate
-from langchain.schema import SystemMessage, HumanMessage
+from langchain_core.prompts import PromptTemplate
+from langchain_core.messages import SystemMessage, HumanMessage
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
 
 def create_ai_assistant(api_key: str, base_url: str = "https://api.minimaxi.com/v1"):
     """创建 AI 助手实例"""
     llm = ChatOpenAI(
-        model="MiniMax",
+        model="MiniMax-M2.7",
         api_key=api_key,
         base_url=base_url
     )
@@ -31,8 +37,7 @@ def create_ai_assistant(api_key: str, base_url: str = "https://api.minimaxi.com/
 
 
 if __name__ == "__main__":
-    # TODO: 替换为你的 API Key
-    API_KEY = "你的API Key"
+    API_KEY = get_pass()
     
     assistant = create_ai_assistant(API_KEY)
     
