@@ -1,3 +1,6 @@
 
 # 敏感文件
 .pass/
+.idea/
+*.iml
+.DS_Store
