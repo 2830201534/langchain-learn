@@ -3,12 +3,18 @@ Day 5 练习 1：Tool 基础
 将函数定义为 Tool，供 Agent 调用
 """
 
+import sys
+from pathlib import Path
+
 from langchain.tools import tool
 from langchain_openai import ChatOpenAI
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 

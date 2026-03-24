@@ -3,6 +3,9 @@ Day 6 练习 1：最小化 NL2SQL Chain
 从用户问题 → LLM → SQL 的最简路径
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
@@ -10,9 +13,12 @@ from langchain.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from typing import Optional
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 

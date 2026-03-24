@@ -3,6 +3,9 @@ Day 6 练习 3：完整 NL2SQL Pipeline
 包含：意图解析 → SQL 生成 → SQL 执行 → 结果返回
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
@@ -12,9 +15,12 @@ from langchain.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 

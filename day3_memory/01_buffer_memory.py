@@ -3,13 +3,19 @@ Day 3 练习 1：ConversationBufferMemory（全量历史）
 最简单的 Memory 方式，保存所有对话历史
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 llm = ChatOpenAI(
-    model="MiniMax",
-    api_key="你的API Key",
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
     base_url="https://api.minimaxi.com/v1"
 )
 

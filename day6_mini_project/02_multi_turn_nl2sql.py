@@ -3,6 +3,9 @@ Day 6 练习 2：带 Memory 的多轮 NL2SQL
 实现：用户第1轮问GMV，第2轮问区域，第3轮说"还是刚才那个指标"
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser, HumanMessage
@@ -12,9 +15,12 @@ from langchain.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from typing import Optional
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 

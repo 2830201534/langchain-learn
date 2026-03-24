@@ -3,15 +3,21 @@ Day 5 练习 3：Agent 决策循环详解
 深入理解 Agent 的工作流程：思考 → 行动 → 观察 → ... → 最终回答
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.tools import tool
 from langchain.agents.format_scratchpad import format_to_openai_function_messages
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 

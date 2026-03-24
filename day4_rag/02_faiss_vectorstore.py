@@ -3,15 +3,21 @@ Day 4 练习 2：FAISS 向量数据库
 将文档 Embedding 后存入 FAISS，支持相似度检索
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
 
 # 注意：MiniMax 可能不支持 Embedding API，这里用 OpenAI 作为示例
 # 实际使用时替换为支持的 Embedding 服务
 
 EMBEDDING_CONFIG = {
     "model": "text-embedding-ada-002",  # 或其他支持的 embedding 模型
-    "api_key": "你的API Key",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"  # 如果 MiniMax 支持 embedding
 }
 

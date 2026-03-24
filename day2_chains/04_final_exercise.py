@@ -80,3 +80,9 @@ if __name__ == "__main__":
         sql = chain.invoke({"query": query})
         print(f"Q: {query}")
         print(f"A: {sql}\n")
+
+    print("=== NL2SQL 翻译测试 stream ===")
+    for query in queries:
+        print(f"Q: {query}")
+        for chunk in chain.stream({"query": query}):
+            print(chunk, end="", flush=True)

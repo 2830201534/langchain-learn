@@ -5,15 +5,21 @@ Day 4 综合练习：基于 codex 指标定义的 RAG 问答系统
 这是 codex 里 SemanticQueryCatalogSnapshot 的 LangChain 版本
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 
@@ -69,7 +75,7 @@ class CodexMetricRAG:
         # Embeddings（需要替换为实际可用的 Embedding 服务）
         self.embeddings = OpenAIEmbeddings(
             model="text-embedding-ada-002",
-            api_key="你的API Key",
+            api_key=get_pass(),
             base_url="https://api.minimaxi.com/v1"
         )
         

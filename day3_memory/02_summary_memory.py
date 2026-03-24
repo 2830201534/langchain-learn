@@ -3,12 +3,18 @@ Day 3 练习 2：ConversationSummaryMemory（摘要压缩）
 对话历史太长时自动摘要，节省 token
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationSummaryMemory
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 llm = ChatOpenAI(
-    model="MiniMax",
-    api_key="你的API Key",
+    model="MiniMax-M2.7",
+    api_key=get_pass(),
     base_url="https://api.minimaxi.com/v1"
 )
 

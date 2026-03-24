@@ -3,20 +3,26 @@ Day 4 练习 3：RetrievalQA Chain
 检索 → 构建 Context → 生成回答 的完整 RAG 链路
 """
 
+import sys
+from pathlib import Path
+
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from comm.get_pass import get_pass
+
 LLM_CONFIG = {
-    "model": "MiniMax",
-    "api_key": "你的API Key",
+    "model": "MiniMax-M2.7",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 
 EMBEDDING_CONFIG = {
     "model": "text-embedding-ada-002",
-    "api_key": "你的API Key",
+    "api_key": get_pass(),
     "base_url": "https://api.minimaxi.com/v1"
 }
 
