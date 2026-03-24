@@ -11,7 +11,7 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import LLMChain
-from langchain.output_parsers import JsonOutputParser
+from langchain.output_parsers import JsonOutputToolsParser
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
@@ -63,7 +63,7 @@ class NL2SQLPipeline:
 
 JSON："""
             ),
-            output_parser=JsonOutputParser(pydantic_model=NL2SQLIntent),
+            output_parser=JsonOutputToolsParser(pydantic_model=NL2SQLIntent),
             memory=self.memory
         )
         

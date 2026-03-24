@@ -9,7 +9,7 @@ from pathlib import Path
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
-from langchain.output_parsers import JsonOutputParser
+from langchain.output_parsers import JsonOutputToolsParser
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -60,7 +60,7 @@ JSON："""
 intent_chain = (
     intent_parsing_prompt
     | llm
-    | JsonOutputParser(pydantic_model=NL2SQLIntent)
+    | JsonOutputToolsParser(pydantic_model=NL2SQLIntent)
 )
 
 # Step 2: SQL 生成
